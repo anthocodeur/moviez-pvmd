@@ -2,7 +2,7 @@
 
 // Configuration de la base de données
 // Modifiez ces variables selon votre configuration
-$host = 'localhost';
+$host = 'localhost:3306';
 $dbname = 'movie_catalog';
 $user = 'root';
 $password = '';
