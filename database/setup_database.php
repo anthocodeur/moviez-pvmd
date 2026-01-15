@@ -2,10 +2,7 @@
 
 // Configuration de la base de données
 // Modifiez ces variables selon votre configuration
-$host = 'localhost:3306';
-$dbname = 'movie_catalog';
-$user = 'root';
-$password = '';
+require_once __DIR__ . '/../config/database.php';
 
 try {
     // Connexion à MySQL
