@@ -124,7 +124,8 @@ try {
         ['Harry Potter and the Sorcerer\'s Stone', 2001, 'Un jeune sorcier découvre le monde de la magie', 152, 7.6, 'harry_potter.jpg'],
         ['Harry Potter and the Chamber of Secrets', 2002, 'Harry affronte un monstre dans la Chambre des Secrets', 161, 7.4, 'harry_potter_2.jpg'],
         ['Harry Potter and the Prisoner of Azkaban', 2004, 'Sirius Black s\'échappe de Azkaban', 142, 7.9, 'harry_potter_3.jpg'],
-        ['Harry Potter and the Goblet of Fire', 2005, 'Harry participe au Tournoi des Trois Sorciers', 157, 7.7, 'harry_potter_4.jpg']
+        ['Harry Potter and the Goblet of Fire', 2005, 'Harry participe au Tournoi des Trois Sorciers', 157, 7.7, 'harry_potter_4.jpg'],
+        ['Armaggeddon', 1995, "Descriptif", 120, 8.5, "armaggeddon.jpg"]
     ];
 
     $stmt = $pdo->prepare("INSERT INTO movies (title, year, synopsis, duration, rating, poster) VALUES (:title, :year, :synopsis, :duration, :rating, :poster)");
