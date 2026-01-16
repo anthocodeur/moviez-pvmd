@@ -7,7 +7,7 @@ $sql = "SELECT movies.*, GROUP_CONCAT(categories.name) AS categories FROM movie_
 	JOIN categories ON categories.id = movie_categories.category_id
     JOIN movies ON movies.id = movie_categories.movie_id
     GROUP BY movie_categories.movie_id
-    ORDER BY movie_categories.movie_id";
+    ORDER BY movies.title";
 
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -71,7 +71,7 @@ foreach ($movies as $i => $movie) {
                                 } ?>
                             </div>
                         </div>
-                        <a href="detail.html?id=">Voir plus</a>
+                        <a href="detail.php?id=<?php echo $movie["id"]; ?>">Voir plus</a>
                     </div>
                 </div>
             <?php endforeach; ?>
