@@ -3,21 +3,21 @@
 require "./config/database.php";
 
 // Toute la logique PHP ICI
-$sql = "SELECT * FROM movies";
+$sql = "SELECT movies.*, GROUP_CONCAT(categories.name) AS categories FROM movie_categories
+	JOIN categories ON categories.id = movie_categories.category_id
+    JOIN movies ON movies.id = movie_categories.movie_id
+    GROUP BY movie_categories.movie_id
+    ORDER BY movie_categories.movie_id";
 
 $req = $bdd->prepare($sql);
 $req->execute();
 $movies = $req->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($movies);
-// die;
 
-$sql = "SELECT * FROM movie_categories
-	JOIN categories ON categories.id = movie_categories.category_id";
-$req = $bdd->prepare($sql);
-$req->execute();
-$movieCategories = $req->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($movieCategories);
-// die;
+foreach ($movies as $i => $movie) {
+    $movie["categories"] = explode(",", $movie["categories"]);
+    $movies[$i] = $movie;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,13 +66,9 @@ $movieCategories = $req->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                             <div class="categories">
-                                <?php foreach ($movieCategories as $category): ?>
-                                    <?php
-                                    if ($movie["id"] == $category["movie_id"]) {
-                                        echo "<span>{$category["name"]}</span>";
-                                    }
-                                    ?>
-                                <?php endforeach; ?>
+                                <?php foreach ($movie["categories"] as $category) {
+                                    echo "<span>$category</span>";
+                                } ?>
                             </div>
                         </div>
                         <a href="detail.html?id=">Voir plus</a>
